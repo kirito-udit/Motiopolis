@@ -1,0 +1,81 @@
+{%  extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col s2 l2">
+        <div class="card">
+            <div class="card-content">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+            </div>
+        </div>
+    </div>
+    <div class="col s7 l7">
+        <h3 class="text-muted"> Exploring tag: #{{tag}} </h3>
+        {% if posts %}
+        <h4>Posts with : #{{tag}}</h4>
+        {% for post in posts %}
+        <div class="row">
+            <div class="col s12 l12">
+                {% include 'snippets/postCardHome.html' %}
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="card  z-depth-3">
+            <div class="card-content">
+                <h2 class="card-title">We do not have any posts right noww..</h2>
+            </div>
+        </div>
+        {% endif  %}
+        {% if groupse%}
+        <h4>Groups with : #{{tag}}</h4>
+        {% for group in groupse %}
+
+
+        <div class="  blue-grey darken-4 card  z-depth-2">
+
+            <div class="card-content">
+                <div class="row">
+                    <div class="col s11 l11">
+                        {% if not user in post.views.all %}
+                        <h3><a href="{% url 'group-detail' slug=group.slug activechannel="General" %}" class=" white-text flow-text">Title:{{ group.title }}</a></h3>
+                        {% else %}
+                        <h3><a href="{% url 'group-detail' slug=group.slug activechannel="General"%}" class=" white-text flow-text" >Title:{{ group.title }}</a></h3>
+                        {% endif %}
+                        <h5 class=" white-text flow-text">Description:{{group.description|safe}}</h5>
+                    </div>
+                    <div class="col s1 l1 right">
+                        <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
+
+                    </div>
+                </div>
+                <div class="row    ">
+                    <div class="col s6 l6">
+                    </div>
+                    <br>
+                    <div class="col s12 l12 postCards-mainContent">
+                        {{group.content|safe}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {%endif%}
+    </div>
+    <div class="col s3  l3">
+        <div class="card-content">
+            <h3 style="color:white;" class="card-title">Our Sidebar</h3>
+
+            <div class="divider">
+
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

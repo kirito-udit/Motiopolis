@@ -1,0 +1,37 @@
+{%  extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% include 'snippets/bootstrapLibRequirements.html' %}
+
+<div class="container">
+
+	<div class="row">
+		<div class="col s10 m10 l6">
+			<form method="POST">
+				{% csrf_token %}
+				<!-- <div class="input-field" >
+					<input type="text" name="title" maxlength="100" required id="id_title">
+				</div>
+				<div class="input-field">
+					<textarea name="content" class= "materialize-textarea"   rows="8" cols="80" id="id_content"></textarea>
+				</div> -->
+				<!-- {{form.as_p}} -->
+				<!-- <p>
+					<label>
+						<input type="checkbox" checked="checked" />
+						<span>Yellow</span>
+					</label>
+				</p> -->
+				{{ form|crispy }}
+				<div class="form-group">
+					<button class="btn btn-outline-info" type="submit"> Post </button>
+				</div>
+
+			</form>
+		</div>
+
+	</div>
+
+</div>
+{% endblock content %}
